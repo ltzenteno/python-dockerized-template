@@ -12,6 +12,8 @@ It is configured to work with a PostgreSQL database.
 
         docker-compose build
 
+It will create the `db` and `app` images along with a `postgres_data` volume
+
 #### Installing new Poetry dependencies
 
 run 

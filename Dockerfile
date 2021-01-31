@@ -35,5 +35,14 @@ RUN poetry install
 # copy project
 COPY . .
 
+# make entrypoint executable
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# creating a user to run our project inside the alpine container
+RUN adduser -D user
+
+# switch to the created `user`
+USER user
+
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
