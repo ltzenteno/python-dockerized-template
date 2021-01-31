@@ -34,9 +34,6 @@ ENV PATH="${PATH}:/root/.poetry/bin"
 
 RUN poetry config virtualenvs.create false
 
-# delete temporary requirements for postgres
-RUN apk del .tmp-build-deps
-
 WORKDIR /usr/src/app
 
 # we copy poetry files, (we add a * to the poetry.lock since that file may or may not exist)
@@ -44,6 +41,9 @@ COPY pyproject.toml poetry.lock* /usr/src/app/
 
 # Install poetry dependencies
 RUN poetry install $(test "$ACTIVE_ENV" == production && echo "--no-dev") --no-root
+
+# delete temporary requirements for postgres
+RUN apk del .tmp-build-deps
 
 # copy project
 COPY . .

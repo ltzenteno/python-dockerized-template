@@ -6,6 +6,7 @@ authors = ["Luis Zenteno"]
 
 [tool.poetry.dependencies]
 django = "^3.1.5"
+psycopg2 = "2.8.6"
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]
