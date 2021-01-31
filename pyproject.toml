@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "mj platform"
+name = "python backend platform"
 version = "0.1.0"
-description = "Platform for something at ITESM"
+description = "Sic Parvis Magna"
 authors = ["Luis Zenteno"]
 
 [tool.poetry.dependencies]
