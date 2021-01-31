@@ -30,7 +30,7 @@ WORKDIR /usr/src/app
 COPY pyproject.toml poetry.lock* /usr/src/app/
 
 # Install poetry dependencies
-RUN poetry install
+RUN poetry install --no-root
 
 # copy project
 COPY . .
