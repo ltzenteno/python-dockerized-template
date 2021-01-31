@@ -14,6 +14,6 @@ fi
 # TODO: uncomment the following lines when we have installed django and created the app
 # Django specific commands:
 
-# python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+python manage.py migrate && python manage.py runserver 0.0.0.0:8000
 
 exec "$@"
