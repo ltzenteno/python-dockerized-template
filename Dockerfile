@@ -21,14 +21,19 @@ RUN pip install -U pip \
 
 ENV PATH="${PATH}:/root/.poetry/bin"
 
+# delete temporary requirements for postgres
+RUN apk del .tmp-build-deps
+
 WORKDIR /usr/src/app
-COPY . .
+
+# we copy poetry files, (we add a * to the poetry.lock since that file may or may not exist)
+COPY pyproject.toml poetry.lock* /usr/src/app/
 
 # Install poetry dependencies
 RUN poetry install
 
-# delete temporary requirements for postgres
-RUN apk del .tmp-build-deps
+# copy project
+COPY . .
 
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
