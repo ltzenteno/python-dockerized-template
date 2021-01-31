@@ -5,6 +5,7 @@ description = "Sic Parvis Magna"
 authors = ["Luis Zenteno"]
 
 [tool.poetry.dependencies]
+django = "^3.1.5"
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]

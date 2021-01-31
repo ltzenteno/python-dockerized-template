@@ -16,7 +16,9 @@ It will create the `db` and `app` images along with a `postgres_data` volume
 
 #### Installing new Poetry dependencies
 
-run 
+By default the container comes with Django 3.1.5 as a dependency, it can be modified to use any other framework (i.e. Flask)
+
+To install more dependencies run the following command:
 
 ##### References
 
