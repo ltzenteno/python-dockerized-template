@@ -34,10 +34,10 @@ ENV PATH="${PATH}:/root/.poetry/bin"
 
 RUN poetry config virtualenvs.create false
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # we copy poetry files, (we add a * to the poetry.lock since that file may or may not exist)
-COPY pyproject.toml poetry.lock* /usr/src/app/
+COPY pyproject.toml poetry.lock* /app/
 
 # Install poetry dependencies
 RUN poetry install $(test "$ACTIVE_ENV" == production && echo "--no-dev") --no-root
@@ -48,14 +48,12 @@ RUN apk del .tmp-build-deps
 # copy project
 COPY . .
 
-# make entrypoint executable
-RUN chmod +x /usr/src/app/entrypoint.sh
-
 # creating a user to run our project inside the alpine container
 RUN adduser -D user
 
+RUN chown -R user:user /app/
+
+RUN chmod -R 755 /app/
+
 # switch to the created `user`
 USER user
-
-# run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

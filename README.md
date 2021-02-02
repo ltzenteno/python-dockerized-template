@@ -20,7 +20,11 @@ A Django empty app is provided being created with the command (this was done out
 
 	django-admin startproject app backend
 
-**NOTE:** _if you want to use other framework different that Django, just remove `backend` dir and `manage.py` file and create your own app with the framework of your choice (outside the container), also modify `entrypoint.sh`_
+To create a new app in django (i.e. "core" app):
+
+	docker-compose exec backend sh -c "cd backend && python manage.py startapp core"
+
+**NOTE:** _if you want to use other framework different that Django, just remove `backend` dir and `manage.py` file and create your own app with the framework of your choice (outside the container)_
 
 #### Installing new Poetry dependencies
 

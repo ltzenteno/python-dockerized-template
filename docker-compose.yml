@@ -7,10 +7,15 @@ services:
       dockerfile: provision/docker/Dockerfile
     ports:
       - "8000:8000"
+    command: >
+      sh -c "cd backend &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/python-dockerized-template/:delegated
+      - .:/app/:delegated
     env_file:
       ./.env
+    restart: on-failure:3
     depends_on:
       - db
 
