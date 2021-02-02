@@ -4,10 +4,11 @@ services:
   backend:
     build:
       context: .
+      dockerfile: provision/docker/Dockerfile
     ports:
       - "8000:8000"
     volumes:
-    - ./app:/app  # maps the app directory in our project to the app directory in our docker image
+      - .:/python-dockerized-template/:delegated
     env_file:
       ./.env
     depends_on:
