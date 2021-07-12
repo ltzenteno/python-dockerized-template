@@ -13,7 +13,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # we lock a poetry version
-ENV POETRY_VERSION=1.1.0
+ENV POETRY_VERSION=1.1.7
+ENV CRYPTOGRAPHY_VERSION=3.1.1
 
 ENV PIP_DEFAULT_TIMEOUT=100 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
@@ -38,6 +39,9 @@ WORKDIR /app
 
 # we copy poetry files, (we add a * to the poetry.lock since that file may or may not exist)
 COPY pyproject.toml poetry.lock* /app/
+
+# install cryptography
+RUN pip install "cryptography==$CRYPTOGRAPHY_VERSION"
 
 # Install poetry dependencies
 RUN poetry install $(test "$ACTIVE_ENV" == production && echo "--no-dev") --no-root
